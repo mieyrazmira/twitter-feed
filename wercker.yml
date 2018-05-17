@@ -12,6 +12,7 @@ build:
     - script:
         name: maven build
         code: mvn clean assembly:assembly
+        
 #Push the docker image with our built and tested application to Docker Hub
 push-release:
   steps:
@@ -23,5 +24,4 @@ push-release:
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         working-dir: /pipeline/source
         ports: $PORT
-        env: PORT=$PORT
         cmd: sh target/bin/start
